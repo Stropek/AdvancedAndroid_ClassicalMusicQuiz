@@ -78,7 +78,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-
+        initializeMediaSession();
         // Initialize the player view.
         mPlayerView = (SimpleExoPlayerView) findViewById(R.id.playerView);
 
@@ -146,17 +146,17 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     class MySessionCallbacks extends MediaSessionCompat.Callback {
         @Override
         public void onPlay() {
-            super.onPlay();
+            mExoPlayer.setPlayWhenReady(true);
         }
 
         @Override
         public void onPause() {
-            super.onPause();
+            mExoPlayer.setPlayWhenReady(false);
         }
 
         @Override
         public void onSkipToPrevious() {
-            super.onSkipToPrevious();
+            mExoPlayer.seekTo(0);
         }
     }
 
